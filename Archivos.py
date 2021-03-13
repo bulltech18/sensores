@@ -11,10 +11,12 @@ def Exportar():
     sql = sqldb()
     filePres = "datos.csv"
     csvp = open(filePres,"w")
-    titlesp = "Sensor, Dato, fecha\n"
+    titlesp = "Sensor, dato_string, dato_decimal, dato_bool fecha, dato_int\n"
     csvp.write(titlesp)
     sql.getRegistros()
-    for (id, sensor, dato, fecha) in sql.MYCURSOR:
-        rowsp = "{},{},{},{}\n".format(id, sensor, dato, fecha)
+    for (id, sensorID, dato_str, dato_decimal, dato_bool, fecha, dato_int) in sql.MYCURSOR:
+        rowsp = "{},{},{},{},{},{},{}\n".format(id, sensorID, dato_str, dato_decimal, dato_bool, fecha, dato_int)
         csvp.write(rowsp)
     csvp.close()
+    
+Exportar()
